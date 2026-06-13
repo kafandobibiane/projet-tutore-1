@@ -1,0 +1,38 @@
+1. Ce qu'est une chaîne de Markov expliqué simplement
+Une chaîne de Markov est une façon de décrire comment un groupe de personnes ou un objet passe d'une situation à une autre au fil du temps. On divise les comportements en plusieurs "états" (par exemple: Fidèle, Passif, A risque, Perdu). À chaque période (ici, chaque mois), une partie des personnes peut rester dans le même état et une autre partie peut changer d'état. Les probabilités de passage sont fixées dans une table appelée matrice de transition. La particularité d'une chaîne de Markov est que l'avenir dépend seulement de l'état présent, pas de l'histoire complète.
+
+2. Ce qu'est une matrice de transition et comment la lire ligne par ligne
+La matrice de transition est un tableau de nombres. Chaque ligne correspond à l'état actuel d'un client, et chaque colonne correspond à l'état futur après une période. Par exemple, si la ligne « Fidèle » contient les valeurs 0.65, 0.20, 0.10, 0.05, cela signifie que parmi 100 clients fidèles, on s'attend à ce que 65 restent fidèles le mois suivant, 20 deviennent passifs, 10 deviennent à risque et 5 soient perdus. Chaque ligne somme normalement à 1.0 car elle décrit la distribution complète des possibilités pour un client donné.
+
+3. Ce que représente chaque état : Fidèle, Passif, A risque, Perdu
+- Fidèle : clients qui achètent régulièrement, satisfaits et engagés.
+- Passif : clients qui achètent moins souvent, ils sont encore clients mais moins actifs.
+- A risque : clients qui montrent des signes d'éloignement; ils peuvent encore revenir mais le risque de les perdre est élevé.
+- Perdu : clients qui ne sont plus clients. Dans notre modèle, l'état Perdu est absorbant, ce qui veut dire qu'une fois perdu, le client ne revient pas.
+
+4. Comment le calcul se fait mois par mois, avec un exemple chiffré complet pour le mois 1
+Le calcul prend le nombre de clients dans chaque état au début du mois et la matrice de transition. Pour trouver le nombre de clients fidèles le mois suivant, on additionne pour chaque état le produit du nombre de clients dans cet état par la probabilité d'aller vers Fidèle. Exemple : si nous avons au départ 500 fidèles, 300 passifs, 150 à risque, 50 perdus, et que la matrice sans action donne pour la colonne Fidèle les valeurs 0.65, 0.25, 0.10, 0.00, alors le nombre attendu de fidèles au mois 1 est 500*0.65 + 300*0.25 + 150*0.10 + 50*0.00 = 325 + 75 + 15 + 0 = 415. On calcule de la même manière pour les autres colonnes (Passif, A risque, Perdu). Les résultats sont arrondis à deux décimales pour la clarté.
+
+5. Ce qu'est un état absorbant et pourquoi Perdu est absorbant dans ce modèle
+Un état absorbant est un état qui, une fois atteint, ne permet plus de transition vers d'autres états. Dans notre matrice, la ligne correspondant à Perdu est 0,0,0,1.00, ce qui signifie que si un client est perdu, la probabilité de rester perdu le mois suivant est de 100%. Cela modélise la réalité où un client entièrement perdu ne revient pas dans le système considéré.
+
+6. Ce que montre le scénario sans action sur 30 mois
+Le scénario sans action utilise une matrice qui reflète le comportement courant des clients sans interventions marketing supplémentaires. Sur 30 mois, les calculs montrent la décroissance progressive du nombre de clients fidèles, une évolution des catégories passives et à risque, et l'accumulation des clients perdus. Le tableau mois par mois permet de suivre ces mouvements et de voir la tendance générale : sans action, les clients peuvent migrer vers des états moins actifs ou être perdus, et l'état "Perdu" augmente souvent régulièrement.
+
+7. Ce que montre le scénario avec actions sur 30 mois
+Le scénario avec actions utilise une matrice différente qui simule l'effet d'actions commerciales (offres, suivi, réengagement). Les probabilités de rester fidèle ou de revenir à un meilleur état sont améliorées. Sur 30 mois, ce scénario montre généralement un plus grand nombre de clients fidèles et un moindre nombre de perdus comparé au scénario sans action. La comparaison mois par mois met en évidence l'effet cumulatif des actions : de petites différences de probabilité chaque mois peuvent produire des écarts importants après plusieurs mois.
+
+8. La comparaison entre les deux scénarios et ce qu'elle signifie concrètement
+La comparaison finale entre "Sans action" et "Avec actions" montre combien plus (ou moins) de clients on a dans chaque catégorie au mois 30. Si les fidèles sont plus nombreux dans le scénario avec actions, cela signifie que les mesures de fidélisation ont un impact positif. Si le nombre de perdus est moins élevé, cela signifie que les actions réduisent les départs. Ces différences se traduisent en revenu potentiel, coût évité de reconquête et meilleures prévisions de stock ou de service client. La comparaison permet de justifier des investissements en marketing par rapport à une stratégie passive.
+
+9. Ce qu'est l'état stationnaire et pourquoi il est important
+L'état stationnaire est une distribution des clients qui ne change plus au fil du temps lorsque l'on applique la même matrice de transition encore et encore. C'est la situation limite vers laquelle la chaîne tend si on la laisse évoluer suffisamment longtemps. Connaître l'état stationnaire aide à prévoir la situation à long terme et à mesurer l'impact permanent des actions : si l'état stationnaire est meilleur avec actions, alors les actions maintiennent une meilleure base de clients sur le long terme.
+
+10. La structure du projet : quel fichier fait quoi et comment les fichiers fonctionnent ensemble
+- markov.py : contient les matrices, la fonction `simuler` en Python, exécute les simulations sur 30 mois, affiche un tableau comparatif dans le terminal et écrit `resultats.json` avec les deux séries de résultats.
+- index.html : page web simple qui présente les matrices, permet de saisir les paramètres de simulation, propose deux boutons pour lancer la simulation et affiche les résultats et la comparaison finale.
+- style.css : règles de style cohérentes pour les états, boutons, tableaux et mise en page responsive.
+- script.js : contient les mêmes matrices en JavaScript, la fonction `simuler` qui reproduit la logique de `markov.py`, gère les clics des boutons, affiche les tableaux mois par mois et la comparaison finale.
+- explication.txt : texte pédagogique en français qui explique le modèle, la lecture des matrices, le calcul mois par mois, l'état absorbant, les deux scénarios et la structure du projet.
+
+En suivant ces fichiers, un étudiant peut lancer la simulation en Python avec `markov.py` pour obtenir un fichier `resultats.json` et explorer les mêmes calculs de façon interactive via la page `index.html`.

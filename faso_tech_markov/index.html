@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Optimisation de la fidélisation client — Faso Tech</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Optimisation de la fidélisation client de Faso Tech</h1>
+      
+    </header>
+
+    <section>
+      <h2>Matrice de transition (Sans action)</h2>
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Fidèle</th>
+            <th>Passif</th>
+            <th>A risque</th>
+            <th>Perdu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fidèle</td>
+            <td>0.65</td>
+            <td>0.20</td>
+            <td>0.10</td>
+            <td>0.05</td>
+          </tr>
+          <tr>
+            <td>Passif</td>
+            <td>0.25</td>
+            <td>0.45</td>
+            <td>0.20</td>
+            <td>0.10</td>
+          </tr>
+          <tr>
+            <td>A risque</td>
+            <td>0.10</td>
+            <td>0.20</td>
+            <td>0.40</td>
+            <td>0.30</td>
+          </tr>
+          <tr>
+            <td>Perdu</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>1.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Matrice de transition (Avec actions)</h2>
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Fidèle</th>
+            <th>Passif</th>
+            <th>A risque</th>
+            <th>Perdu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fidèle</td>
+            <td>0.80</td>
+            <td>0.12</td>
+            <td>0.05</td>
+            <td>0.03</td>
+          </tr>
+          <tr>
+            <td>Passif</td>
+            <td>0.40</td>
+            <td>0.35</td>
+            <td>0.15</td>
+            <td>0.10</td>
+          </tr>
+          <tr>
+            <td>A risque</td>
+            <td>0.20</td>
+            <td>0.25</td>
+            <td>0.35</td>
+            <td>0.20</td>
+          </tr>
+          <tr>
+            <td>Perdu</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>0.00</td>
+            <td>1.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="params">
+      <h2>Paramètres de simulation</h2>
+      <div class="form-row">
+        <label>Clients Fidèles<input id="fidele" type="number" value="500" min="0"></label>
+        <label>Clients Passifs<input id="passif" type="number" value="300" min="0"></label>
+      </div>
+      <div class="form-row">
+        <label>Clients A risque<input id="aRisque" type="number" value="150" min="0"></label>
+        <label>Clients Perdus<input id="perdu" type="number" value="50" min="0"></label>
+      </div>
+      <div class="form-row">
+        <label>Nombre de mois<input id="mois" type="number" value="30" min="1"></label>
+      </div>
+      <div class="buttons">
+        <button id="btnSans">Simuler sans action</button>
+        <button id="btnAvec">Simuler avec actions</button>
+      </div>
+    </section>
+
+    <section id="resultats" class="results">
+      <h2>Résultats</h2>
+      <div class="tables-wrapper">
+        <table id="tableResultats">
+          <thead>
+            <tr>
+              <th>Mois</th>
+              <th>Fidèles</th>
+              <th>Passifs</th>
+              <th>A risque</th>
+              <th>Perdus</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="comparaison" class="comparison">
+      <h2>Comparaison finale</h2>
+      <table id="tableComparaison">
+        <thead>
+          <tr>
+            <th>Scénario</th>
+            <th>Fidèles</th>
+            <th>Passifs</th>
+            <th>A risque</th>
+            <th>Perdus</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

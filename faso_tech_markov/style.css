@@ -1,0 +1,35 @@
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#F5F5F5;margin:0;padding:20px}
+.container{max-width:960px;margin:0 auto;background:#FFFFFF;border:1px solid #E0E0E0;box-shadow:0 1px 4px rgba(0,0,0,0.08);border-radius:6px;padding:20px}
+header h1{margin:0;font-size:25px;color:#2E7D32;text-align:center}
+.subtitle{color:#555555;margin-top:6px}
+section{margin-top:20px}
+.matrix{width:100%;border-collapse:collapse}
+.matrix th,.matrix td{border:1px solid #E0E0E0;padding:8px;text-align:center}
+.matrix thead th{background:#dce1f6;color:#ffffff}
+.matrix thead th:nth-child(2){background:#2E7D32}
+.matrix thead th:nth-child(3){background:#FDD835;color:#000000}
+.matrix thead th:nth-child(4){background:#FF8F00;color:#000000}
+.matrix thead th:nth-child(5){background:#D32F2F}
+.form-row{display:flex;gap:12px;margin-bottom:10px}
+.form-row label{flex:1;display:flex;flex-direction:column;font-size:14px;color:#212121}
+.form-row input{padding:8px;border:1px solid #E0E0E0;border-radius:4px}
+.buttons{display:flex;gap:12px;margin-top:8px}
+#btnSans{background:#2E7D32;color:#FFFFFF;border:none;padding:10px 24px;border-radius:4px;cursor:pointer}
+#btnAvec{background:#D32F2F;color:#FFFFFF;border:none;padding:10px 24px;border-radius:4px;cursor:pointer}
+#btnSans:hover{filter:brightness(0.9)}
+#btnAvec:hover{filter:brightness(0.9)}
+.results .tables-wrapper{overflow:auto}
+#tableResultats{width:100%;border-collapse:collapse;margin-top:10px}
+#tableResultats th,#tableResultats td{border:1px solid #E0E0E0;padding:8px;text-align:right}
+#tableResultats thead th{background:#FF8F00;color:#FFFFFF;text-align:center}
+#tableResultats thead th:nth-child(2){background:#2E7D32}
+#tableResultats thead th:nth-child(3){background:#FDD835;color:#000000}
+#tableResultats thead th:nth-child(4){background:#FF8F00;color:#000000}
+#tableResultats thead th:nth-child(5){background:#D32F2F}
+#tableResultats tbody tr:nth-child(odd){background:#F9F9F9}
+#tableComparaison{width:100%;border-collapse:collapse;margin-top:10px}
+#tableComparaison th,#tableComparaison td{border:1px solid #E0E0E0;padding:8px;text-align:right}
+#tableComparaison thead th{background:#2E7D32;color:#FFFFFF}
+strong.row-last{font-weight:700}
+@media(max-width:600px){.form-row{flex-direction:column}.container{padding:12px}.matrix,.results .tables-wrapper{overflow:auto}}
